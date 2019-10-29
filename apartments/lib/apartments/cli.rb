@@ -8,8 +8,10 @@ class Apartments::CLI
   
   def list_apartments
     puts "Current Apartments:"
-    
      @rentals = Apartments::Rentals.today
+     @rentals.each.with_index(1) do |rentals,i|
+       puts "#{i} - #{rentals.name} - #{rentals.price} - #{rentals.fee}"
+     end
   end 
   
   def menu
@@ -19,7 +21,8 @@ class Apartments::CLI
     input = gets.strip
     
     if input.to_i > 0 
-      puts @rentals[input.to_i-1]
+      the_rental = @rentals[input.to_i-1]
+      puts "#{the_rental.name} - #{the_rental.price} - #{the_rental.fee}"
     else if input == "list"
       list_apartments
     else 
@@ -32,3 +35,4 @@ class Apartments::CLI
    puts "Thank you for choosing our search engine!"
   end
 end 
+end
