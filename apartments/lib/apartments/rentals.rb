@@ -32,7 +32,7 @@ def self.scrape_rentals
   end 
   
   def self.scrape_rentinmanhattan 
-    doc = Nokogiri::HTML(open("https://www.woot.com"))
+    doc = Nokogiri::HTML(open("https://www.rentinmanhattan.net/upper-east-side/apartment-for-rent/328-east-74th-street-1/1074"))
     binding.pry 
   end 
 end 
