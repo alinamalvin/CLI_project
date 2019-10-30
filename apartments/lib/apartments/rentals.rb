@@ -33,10 +33,14 @@ def self.scrape_rentals
   
     def self.scrape_rentinmanhattan 
     doc = Nokogiri::HTML(open("https://www.rentinmanhattan.net/upper-east-side/apartment-for-rent/328-east-74th-street-1/1074"))
-    name = doc.search("h1.property-address-header").text
-    price = doc.search("h2.property-price-header").text
-    fee = true
-    binding.pry 
+    rental = self.new 
+    rental.name = doc.search("h1.property-address-header").text
+    rental.price = doc.search("h2.property-price-header").text
+    rental.fee = true
+    rental 
+
+    
+    #binding.pry -change when working on url 
   end 
 end  
 
