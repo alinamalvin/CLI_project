@@ -9,11 +9,13 @@ end
 def self.scrape_rentals
   rentals=[]
   
-  # Go to woot, find apartments
+  rentals << self.scrape_rentinmanhattan
+
+  # Go to rentinmanhattan, find apartmentshttps://www.rentinmanhattan.net/
   # extract the properties
   # instantiate a rental 
   
-  # Go to meh.. 
+  # Go to streeteasy.. 
    rental_1 = self.new 
     rental_1.name = "One bedroom in UWS"
     rental_1.price = "$2000"
@@ -28,4 +30,10 @@ def self.scrape_rentals
     
     rentals
   end 
+  
+  def self.scrape_rentinmanhattan 
+    doc = Nokogiri::HTML(open("https://www.woot.com"))
+    binding.pry 
+  end 
 end 
+
