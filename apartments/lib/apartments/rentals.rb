@@ -20,20 +20,23 @@ def self.scrape_rentals
     rental_1.name = "One bedroom in UWS"
     rental_1.price = "$2000"
     rental_1.fee = true 
-    rental_1.url = "https://www.rentinmanhattan.net/upper-west-side/apartment-for-rent/32-west-86th-street-3b/1132"
+
     
     rental_2 = self.new 
     rental_2.name = "Two bedroom in UES"
     rental_2.price = "$3000"
     rental_2.fee = false
-    rental_2.url = "https://www.rentinmanhattan.net/upper-east-side/apartment-for-rent/328-east-74th-street-1/1074"
+    
     
     rentals
   end 
   
-  def self.scrape_rentinmanhattan 
+    def self.scrape_rentinmanhattan 
     doc = Nokogiri::HTML(open("https://www.rentinmanhattan.net/upper-east-side/apartment-for-rent/328-east-74th-street-1/1074"))
+    name = doc.search("h1.property-address-header").text
+    price = doc.search("h2.property-price-header").text
+    fee = true
     binding.pry 
   end 
-end 
+end  
 
