@@ -9,8 +9,8 @@ end
 def self.scrape_rentals
   rentals=[]
   
-  rentals << self.scrape_rentinmanhattan
-  rentals << self.scrape_streeteasy
+  rentals << self.scrape_studio
+  rentals << self.scrape_twobedroom
  
  rentals
  end 
@@ -28,7 +28,7 @@ def self.scrape_rentals
     rental_2.fee = false
     rental_2.url="htps://streeteasy.com/building/32-west-86-street-new_york/41"
   
-    def self.scrape_rentinmanhattan 
+    def self.scrape_studio 
     doc = Nokogiri::HTML(open("https://www.rentinmanhattan.net/upper-east-side/apartment-for-rent/328-east-74th-street-1/1074"))
     rental = self.new 
     rental.name = doc.search("h1.property-address-header").text.strip
@@ -37,13 +37,12 @@ def self.scrape_rentals
     rental 
   end 
   
-  def self.scrape_streeteasy
-    doc = Nokogiri::HTML(open("https://streeteasy.com/building/32-west-86-street-new_york/41"))
+  def self.scrape_twobedroom
+    doc = Nokogiri::HTML(open("https://www.rentinmanhattan.net/south-harlem-soha/apartment-for-rent/230-west-113th-street-garden-b/1302"))
     rental = self.new
-    rental.name = doc.search("a.incognito").text
-    rental.price = doc.search("div.price").text
-    rental_fee=false 
-    rental
-end 
-
+    rental.name = doc.search("h1.property-address-header").text.strip
+    rental.price = doc.search("h2.property-price-header").text.strip 
+    rental.fee = false 
+    rental 
+  end 
 end
