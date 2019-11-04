@@ -3,7 +3,6 @@ class Apartments::CLI
   def call
     list_apartments
     menu
-    goodbye
   end 
   
   def list_apartments
@@ -17,22 +16,25 @@ class Apartments::CLI
   def menu
     input = nil 
     while input !="exit"
-    puts "Enter the amount of bedroom you are looking for or type list to see apartments again or type exit to enter:"
+      puts "Enter the amount of bedroom you are looking for or type list to see apartments again or type exit to enter:"
     input = gets.strip
     
-    if input.to_i > 0 
+    if input.to_i > 0 && input.to_i < 3
       the_rental = @rentals[input.to_i-1]
       puts "#{the_rental.name} - #{the_rental.price} - #{the_rental.fee}"
     else if input == "list"
       list_apartments
+    else if input=="exit"
+       goodbye
     else 
        puts "No results found, type list or exit."
-      end 
-    end 
-  end
-  
+     end 
+    end
+  end 
+end 
+end 
+   
   def goodbye 
-   puts "Thank you for choosing our search engine!"
+    puts "Thank you for choosing our search engine!"
   end
 end 
-end
